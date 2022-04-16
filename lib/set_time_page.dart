@@ -1,5 +1,6 @@
 import 'package:call_test/call_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
 
@@ -12,6 +13,15 @@ class SetTimePage extends StatefulWidget {
 }
 
 class _SetTimePageState extends State<SetTimePage> {
+  String? selectHour = '1';
+  String? selectMinits = '1';
+
+  DropdownMenuItem hourSet (String i) {
+      return DropdownMenuItem(
+        child: Text('$i'),
+        value: '$i',
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +33,20 @@ class _SetTimePageState extends State<SetTimePage> {
         child: Column(
           children: [
             Text('時間を設定してください。'),
-            Text('12:00'),
+            const SizedBox(height: 20,),
+            // Text('$selectHour : $selectMinits'),
+            // DropdownButton(
+            //   items: [
+            //     hourSet('1'),
+            //   ],
+            //   onChanged: () {
+            //     setState(() {
+            //       selectHour = value;
+            //     });
+            //   },
+            //   value: selectHour,
+            // ),
+            const SizedBox(height: 20,),
             ElevatedButton(
                 onPressed: () async {
                   await Navigator.push(

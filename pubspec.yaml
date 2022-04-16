@@ -15,6 +15,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   just_audio: ^0.9.20
+  sliding_switch: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -35,4 +36,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/line.png
+    - assets/images/吹き出しのアイコン11.png
+    - assets/images/目覚まし時計のフリーアイコン.png
     - assets/audio/Cell_Phone-Ringtone01-1.mp3

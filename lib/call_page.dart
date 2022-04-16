@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
+import 'package:sliding_switch/sliding_switch.dart';
 
 class CallPage extends StatefulWidget {
   const CallPage({Key? key}) : super(key: key);
@@ -78,38 +79,112 @@ class _CallPageState extends State<CallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-      ),
-      body: Center(
+      body: Container(
+        color: Colors.black,
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.fromLTRB(30,150,30,0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(_stateSource),
-            Slider(
-              value: _currentSliderValue,
-              min: 0,
-              max: 10.0,
-              divisions: 10,
-              label: _currentSliderValue.toString(),
-              onChanged: (double value) {
-                setState(() {
-                  _currentSliderValue = value;
-                });
-              },
+          children: [
+            const Text('岡本朋樹',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
             ),
-            Text(_currentSliderValue.toString()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/line.png',
+                  fit: BoxFit.fill,
+                  height: 20,
+                ),
+                const Text(' LINEオーディオ...',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 300),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/目覚まし時計のフリーアイコン.png',
+                      height: 20,
+                    ),
+                    const SizedBox(height: 8),
+                    const Text('あとで通知',
+                      style: TextStyle(
+                          color: Colors.white
+                      ),)
+                  ],),
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/吹き出しのアイコン11.png',
+                      height: 20,
+                    ),
+                    const SizedBox(height: 8),
+                    const Text('メッセージを\n送信',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white
+                      ),)
+                  ],)
+              ],
+            ),
+            const SizedBox(height: 10),
             IconButton(
-              icon: const Icon(Icons.play_arrow),
+              icon: const Icon(Icons.play_arrow,color: Colors.white,),
               onPressed: () async => await _playSoundFile(),
             ),
             IconButton(
-              icon: const Icon(Icons.pause),
+              icon: const Icon(Icons.pause,color: Colors.white,),
               onPressed: () async => await _player.pause(),
+            ),
+            SlidingSwitch(
+              value: false,
+              width: 300,
+              height: 90,
+              textOff: '＞',
+              textOn: 'スライドで応答',
+              onChanged: (bool value) {
+
+              },
+              onSwipe: (){
+
+              },
+              onTap: (){
+
+              },
+              onDoubleTap: (){
+
+              },
             )
           ],
         ),
       ),
+      // body: Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       IconButton(
+      //         icon: const Icon(Icons.play_arrow),
+      //         onPressed: () async => await _playSoundFile(),
+      //       ),
+      //       IconButton(
+      //         icon: const Icon(Icons.pause),
+      //         onPressed: () async => await _player.pause(),
+      //       )
+      //     ],
+      //   ),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: _takeTurns,
         tooltip: 'Increment',
